@@ -7,7 +7,7 @@ const {deletePostController} = deleteController
 
 routes.get("/posts", getDataController)
 routes.post("/posts", newPostController)
-routes.delete("/posts/delete/:id", deletePostController)
+routes.delete("/posts/:id", deletePostController)
 routes.put("/posts/like/:id")
 
 

@@ -20,7 +20,12 @@ function App() {
     const post = { titulo, url: imgSrc, descripcion };
     await axios.post(urlBaseServer + "/posts", post);
     getPosts();
+    setTitulo("");
+    setImgSRC("");
+    setDescripcion("");
+    console.log("Nuevo estado:", titulo, imgSrc, descripcion);
   };
+ 
 
   // este método se utilizará en el siguiente desafío
   const like = async (id) => {
@@ -47,6 +52,9 @@ function App() {
             setTitulo={setTitulo}
             setImgSRC={setImgSRC}
             setDescripcion={setDescripcion}
+            titulo={titulo}
+            imgSrc={imgSrc}
+            descripcion={descripcion}
             agregarPost={agregarPost}
           />
         </div>

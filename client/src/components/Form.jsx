@@ -1,4 +1,4 @@
-function Form({ setTitulo, setImgSRC, setDescripcion, agregarPost }) {
+function Form({ setTitulo, setImgSRC, setDescripcion, agregarPost, titulo, imgSrc, descripcion }) {
   return (
     <div className="form mb-5">
       <div className="mb-2">
@@ -7,6 +7,7 @@ function Form({ setTitulo, setImgSRC, setDescripcion, agregarPost }) {
         <input
           onChange={(event) => setTitulo(event.target.value)}
           className="form-control"
+          value={titulo}
         />
       </div>
       <div className="mb-2">
@@ -14,6 +15,7 @@ function Form({ setTitulo, setImgSRC, setDescripcion, agregarPost }) {
         <input
           onChange={(event) => setImgSRC(event.target.value)}
           className="form-control"
+          value={imgSrc}
         />
       </div>
       <div className="mb-3">
@@ -21,6 +23,7 @@ function Form({ setTitulo, setImgSRC, setDescripcion, agregarPost }) {
         <textarea
           onChange={(event) => setDescripcion(event.target.value)}
           className="form-control"
+          value={descripcion}
         ></textarea>
       </div>
       <div className="d-flex">

@@ -7,8 +7,8 @@ const deletePostController = async (req, res) => {
 
     try {
         if (id) {
-            const query_result = await dataBase.query(verifyIdQuery, values);
-            const post = query_result.rows[0];
+            const verifyID = await dataBase.query(verifyIdQuery, values);
+            const post = verifyID.rows[0];
             if (!post) {
                 res.status(400).json({
                     msg: `El id:${id} no pertenece a ningún post`
@@ -26,14 +26,13 @@ const deletePostController = async (req, res) => {
         const deletePost = await dataBase.query(deletePostQuery, values)
         res.status(202).json({
             msg: `El post con el id ${id} fue eliminado exitosamente`,
-            data: deletePost
         })
         console.log(`El post con el id ${id} fue eliminado exitosamente`)
 
     } catch (error) {
         console.log(error)
         res.status(500).json({
-            msg: (`Ocuerrio un error al procesar tu solicitus:`, error.message),
+            msg: (`Ocurrió un error al procesar tu solicitud:`, error.message),
             error: error.message
         })
     }
