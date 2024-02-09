@@ -7,6 +7,7 @@ const newPostController = async (req, res) => {
     try {
         const { titulo, url, descripcion } = req.body;
         const values = [titulo, url, descripcion]
+        console.log(titulo)
     
         if (!titulo && !url && !descripcion) {
             console.warn('Llena los campos para crear un nuevo post');
