@@ -1,11 +1,10 @@
-const dataBase = require('../dataBase/index')
 const { getAllPostQuery } = require('../dataBase/querys/index')
 
 const getDataController = async (req, res) => {
 
     try {
 
-        const getPosts = await dataBase.query(getAllPostQuery)
+        const getPosts = await getAllPostQuery()
         if (getPosts.rowCount) {
             console.info("data cargada correctamente")
             res.status(200).json(getPosts.rows)

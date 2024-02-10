@@ -1,17 +1,13 @@
-const dataBase = require('../dataBase/index')
-const { deletePostQuery, verifyIdQuery } = require('../dataBase/querys')
+const { deletePostQuery, obtenerPostQuery } = require('../dataBase/querys')
 
 const deletePostController = async (req, res) => {
     const { id } = req.params
-    const values = [id]
-
     try {
         if (id) {
-            const verifyID = await dataBase.query(verifyIdQuery, values);
-            const post = verifyID.rows[0];
+            const post = await obtenerPostQuery(id, res)
             if (!post) {
-                res.status(400).json({
-                    msg: `El id:${id} no pertenece a ningún post`
+                res.status(404).json({
+                    msg: `El id: ${id} no pertenece a ningún post`
                 });
                 return
             }
@@ -23,16 +19,15 @@ const deletePostController = async (req, res) => {
             return
         }
 
-        const deletePost = await dataBase.query(deletePostQuery, values)
-        res.status(202).json({
+        await deletePostQuery(id, res)
+        res.status(200).json({
             msg: `El post con el id ${id} fue eliminado exitosamente`,
         })
         console.log(`El post con el id ${id} fue eliminado exitosamente`)
 
     } catch (error) {
-        console.log(error)
         res.status(500).json({
-            msg: (`Ocurrió un error al procesar tu solicitud:`, error.message),
+            msg: (`Ocurrió un error al procesar tu solicitud:, ${error.message}`),
             error: error.message
         })
     }

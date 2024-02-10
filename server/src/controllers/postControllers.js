@@ -6,8 +6,6 @@ const newPostController = async (req, res) => {
 
     try {
         const { titulo, url, descripcion } = req.body;
-        const values = [titulo, url, descripcion]
-        console.log(titulo)
     
         if (!titulo && !url && !descripcion) {
             console.warn('Llena los campos para crear un nuevo post');
@@ -39,7 +37,7 @@ const newPostController = async (req, res) => {
         }
 
         // SI PASAN LAS VALIDACIONES SE CREA NUEVO POST
-        const createPost = await dataBase.query(newPostQuery, values)
+        const createPost = await newPostQuery(titulo, url, descripcion)
         res.status(200).json({
             msg: 'Post creado exitosamente!!',
             dataCount: createPost.rowCount,

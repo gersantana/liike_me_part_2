@@ -10,4 +10,10 @@ app.use(cors());
 app.use('/', routes);
 
 
+app.use((error, req, res, next) => {
+    console.error(error.message);
+    res.status(500).send('¡Algo salió mal por favor intentar mas tarde!');
+  });
+
+
 app.listen(PORT, () => console.log(`Servidor corriendo en el puerto ${PORT}`))
